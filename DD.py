@@ -28,19 +28,21 @@ def invalid_message():
 
 def ask_question(question_list,question_index):
 	answer=str(input(question_list[question_index]))
-	if answer!="yes" or answer!="no":
+	if answer=="yes" or answer=="no":
 		return answer
 	#print(answer)
-	while answer !="yes" or answer != "no":
+	while answer !="yes" and answer != "no":
 		invalid_message()
-		ask_question(question_list,question_index)
-		
+		answer=str(input(question_list[question_index]))
 	return answer
 
 def update_counter(counter, index, answer, answer_list):
 	if answer == answer_list[index]:
+		#print("inside update_counter")
+		#print("counter",counter,"\n")
 		counter+=1
-	return 
+		#print("counter",counter,"\n")
+	return counter
 
 def calc_goodness(counter):
 	if counter<2:
@@ -58,7 +60,7 @@ def calc_chaotic(counter):
 	else:
 		return "Chaotic"
 
-def initialize():
+def initialize(goodness_counter, chaos_counter):
 	goodness_counter=0
 	chaos_counter=0
 	print('''
@@ -72,23 +74,24 @@ def initialize():
 	  ''')
 	return
 
-def run_questionnaire():
-	initialize()
+def run_questionnaire(goodness_counter, chaos_counter):
+	initialize(goodness_counter, chaos_counter)
 	for good_question_index in range(0,len(goodness_questions)):
 		answer=ask_question(goodness_questions,good_question_index)
-		update_counter(goodness_counter, good_question_index, answer, goodness_answers)
+		goodness_counter=update_counter(goodness_counter, good_question_index, answer, goodness_answers)
+		#print(goodness_counter)
 		goodness_description=calc_goodness(goodness_counter)
 
 	for chaos_question_index in range(0,len(chaos_questions)):
 		answer=ask_question(chaos_questions,chaos_question_index)
-		update_counter(chaos_counter, chaos_question_index, answer, chaos_answers)
+		chaos_counter=update_counter(chaos_counter, chaos_question_index, answer, chaos_answers)
 		chaos_description=calc_chaotic(chaos_counter)
 	print(''' You have been found to be %s %s person. Thank you for taking part! Have a lovely day!
 
 		''' %(chaos_description,goodness_description))
 	return
 
-run_questionnaire()
+run_questionnaire(goodness_counter, chaos_counter)
 
 
 
