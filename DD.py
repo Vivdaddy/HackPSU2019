@@ -17,11 +17,11 @@ chaos_counter=0
 
 goodness_questions=["Have you betrayed anyone's trust?\n","Do you care about yourself more than others?\n",
 "Would you sacrifice yourself for the survival several others?\n","Would you kill a cockroach you find in the bathroom?\n"]
-goodness_answers=['n','n','y','n']
+goodness_answers=['no','no','yes','no']
 
 chaos_questions=["If a law was unjust, would you follow it?\n","Would you change a system instead of following it?\n",
 "Do people know what's good for them?\n", "If your subordinate made a mistake, would you take responsibility for his actions when you explain to a superior?\n"]
-chaos_answers=['n','y','y','n']
+chaos_answers=['no','yes','yes','no']
 
 def invalid_message():
 	print("Please use yes (or) no")
